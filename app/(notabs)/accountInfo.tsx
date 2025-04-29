@@ -5,6 +5,8 @@ export default function accountInfo() {
   return (
     <View>
       <Text>accountInfo</Text>
+      <Text>accountInfo</Text>
+      <Text>accountInfo</Text>
     </View>
   )
 }

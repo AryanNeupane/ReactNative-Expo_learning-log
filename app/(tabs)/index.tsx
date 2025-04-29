@@ -11,7 +11,7 @@ export default function MyTabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Library" component={HomeScreen} />
-      <Tab.Screen name="Liked " component={ProfileScreen} />
+      <Tab.Screen name="Liked" component={ProfileScreen} />
       <Tab.Screen name="Suggested" component={SettingScreen} />
     </Tab.Navigator>
   );
@@ -25,11 +25,11 @@ function HomeScreen(){
 
 function ProfileScreen(){
   return <View>
-  <Text>Profile screen</Text>
+  <Text>Liked</Text>
 </View>
 }
 function SettingScreen(){
   return <View>
-  <Text>Setting screen</Text>
+  <Text>Suggested</Text>
 </View>
 }

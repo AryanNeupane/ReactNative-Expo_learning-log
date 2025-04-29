@@ -15,4 +15,6 @@ Usage : https://gorhom.dev/react-native-bottom-sheet/usage
 -Bottom Sheets 
 https://gorhom.dev/react-native-bottom-sheet/
 -wrap the component in Guester handler 
+# could have done that with the help of drawer
+
 

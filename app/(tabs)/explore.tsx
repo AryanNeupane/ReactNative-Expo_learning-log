@@ -1,13 +1,23 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import React, { useState } from 'react';
+import { View, Text, Button } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { DownloadPicture } from '@/components/BottomSheet';
 
-const explore = () => {
+const Account = () => {
+  const [pictureOpen, setPictureOpen] = useState(false);
+
   return (
-    <SafeAreaView>
-      <Text>explore</Text>
+    <SafeAreaView style={{flex:1}}>
+      <View style={{flex:1}}>
+      <Text>Explore</Text>
+      <Button
+        title="Open Bottom Sheet"
+        onPress={() => setPictureOpen(true)}
+      />
+      {pictureOpen && <DownloadPicture onClose={()=>setPictureOpen(false)} />}
+      </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default explore
+export default Account;
