@@ -1,35 +1,62 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { Link } from 'expo-router'
+import React, { useState } from 'react';
+import { View, Text,Image,StyleSheet, FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { DownloadPicture } from '@/components/BottomSheet';
+import ParallaxScrollView from '@/components/ParallaxScrollView';
+import useWallpapers from '@/hooks/useWallpapers';
+import ImageCard from '@/components/ImageCard';
 
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-const Tab = createMaterialTopTabNavigator();
 
-export default function MyTabs() {
+const Account = () => {
+ const wallpapers= useWallpapers();
+
+
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Library" component={HomeScreen} />
-      <Tab.Screen name="Liked" component={ProfileScreen} />
-      <Tab.Screen name="Suggested" component={SettingScreen} />
-    </Tab.Navigator>
+    <SafeAreaView style={{flex:1}}>
+  <ParallaxScrollView 
+    headerBackgroundColor={{dark:"black",light:"white"}} 
+    headerImage={
+      <Image style={{flex:1}} source={{uri :wallpapers[0]?.url ?? ""}} />
+    }>
+
+
+
+      <View style={styles.container}>
+        <View  style={styles.innerContainer}>
+        <FlatList
+        data={wallpapers}
+        renderItem={({item}) => <ImageCard wallpaper={item} />}
+        keyExtractor={item => item.name}
+      />
+        </View>
+    
+        <View  style={styles.innerContainer}>
+        <FlatList
+        data={wallpapers}
+        renderItem={({item}) => <ImageCard wallpaper={item} />}
+        keyExtractor={item => item.name}
+      />
+        </View>
+    
+      </View>
+     
+  </ParallaxScrollView>
+</SafeAreaView>
+
   );
-}
+};
 
-function HomeScreen(){
-  return <View>
-    <Text>Home screen</Text>
-  </View>
-}
+export default Account;
 
-function ProfileScreen(){
-  return <View>
-  <Text>Liked</Text>
-</View>
-}
-function SettingScreen(){
-  return <View>
-  <Text>Suggested</Text>
-</View>
-}
+const styles=StyleSheet.create({
+  container:{
+    // display:"flex",
+    flexDirection:"row",
+    flex:1
+  },
+  innerContainer:{
+    flex:0.5,
+    padding:10,
+  }
+})
