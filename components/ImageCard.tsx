@@ -1,14 +1,19 @@
-import { View, Text, Image, StyleSheet, useColorScheme } from 'react-native'
+import { View, Text, Image, StyleSheet, useColorScheme, Pressable } from 'react-native'
 import React from 'react'
 import { Wallpaper } from '@/hooks/useWallpapers'
 import { ThemedText } from './ThemedText'
 import { Ionicons } from '@expo/vector-icons'
 
-export default function ImageCard({ wallpaper }: { wallpaper: Wallpaper }) {
+export default function ImageCard({ wallpaper, onPress }: { 
+  wallpaper: Wallpaper 
+  onPress:()=>void
+
+}) {
   const theme = useColorScheme() ?? 'light'
 
   return (
-    <View style={styles.card}>
+    <Pressable onPress={onPress}>
+    <View style={styles.card} >
       <View style={styles.imageWrapper}>
         <Image source={{ uri: wallpaper.url }} style={styles.image} />
         <View style={styles.labelContainer}>
@@ -17,6 +22,7 @@ export default function ImageCard({ wallpaper }: { wallpaper: Wallpaper }) {
         </View>
       </View>
     </View>
+    </Pressable>
   )
 }
 
